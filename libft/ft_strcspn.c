@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 19:45:52 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/12 20:10:08 by yuerliu          ###   ########.fr       */
+/*   Created: 2025/04/09 20:15:20 by yuerliu           #+#    #+#             */
+/*   Updated: 2025/04/18 21:08:07 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap(t_list **stack)
+/*
+** ft_strcspn - Returns the length of the initial segment of 's' 
+** that consists entirely of characters not in 'reject'
+*/
+size_t	ft_strcspn(const char *s, const char *reject)
 {
-	t_list	*one;
-	t_list	*two;
+	size_t	i;
+	size_t	j;
 
-	if (!*stack || !(*stack)->next)
-		return ;
-	one = stack;
-	two = one->next;
-	one->next = two->next;
-	two->next = one;
-	*stack = two;
-}
-
-void	sa(t_list **st_a)
-{
-	swap(st_a);
-	ft_printf("sa\n");
-}
-
-void	sb(t_list **st_b)
-{
-	swap(st_b);
-	ft_printf("sb\n");
+	i = 0;
+	while (s[i] != '\0')
+	{
+		j = 0;
+		while (reject[j] != '\0')
+		{
+			if (s[i] == reject[j])
+				return (i);
+			j++;
+		}
+		i++;
+	}
+	return (i);
 }

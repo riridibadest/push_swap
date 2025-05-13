@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 19:45:52 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/12 20:10:08 by yuerliu          ###   ########.fr       */
+/*   Created: 2024/10/18 18:37:48 by yuerliu           #+#    #+#             */
+/*   Updated: 2024/10/18 20:01:09 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap(t_list **stack)
+char	*ft_strrchr(const char *s, int c)
 {
-	t_list	*one;
-	t_list	*two;
+	int	n;
 
-	if (!*stack || !(*stack)->next)
-		return ;
-	one = stack;
-	two = one->next;
-	one->next = two->next;
-	two->next = one;
-	*stack = two;
+	n = 0;
+	while (s[n] != '\0')
+	{
+		n++;
+	}
+	if (c == '\0')
+		return ((char *)(s + n));
+	while (n >= 0)
+	{
+		if (s[n] == (char)c)
+			return ((char *)s + n);
+		n--;
+	}
+	return (NULL);
 }
-
-void	sa(t_list **st_a)
-{
-	swap(st_a);
-	ft_printf("sa\n");
-}
-
-void	sb(t_list **st_b)
-{
-	swap(st_b);
-	ft_printf("sb\n");
-}
+//cast char * to null

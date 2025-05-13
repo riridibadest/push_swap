@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 19:45:52 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/12 20:10:08 by yuerliu          ###   ########.fr       */
+/*   Created: 2024/10/20 22:07:05 by yuerliu           #+#    #+#             */
+/*   Updated: 2024/10/22 22:49:39 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap(t_list **stack)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_list	*one;
-	t_list	*two;
+	char	c;
 
-	if (!*stack || !(*stack)->next)
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
 		return ;
-	one = stack;
-	two = one->next;
-	one->next = two->next;
-	two->next = one;
-	*stack = two;
-}
-
-void	sa(t_list **st_a)
-{
-	swap(st_a);
-	ft_printf("sa\n");
-}
-
-void	sb(t_list **st_b)
-{
-	swap(st_b);
-	ft_printf("sb\n");
+	}
+	if (n < 0)
+	{
+		n = -n;
+		write(fd, "-", 1);
+	}
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	c = (n % 10) + '0';
+	write(fd, &c, 1);
 }

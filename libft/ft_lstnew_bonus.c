@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 19:45:52 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/12 20:10:08 by yuerliu          ###   ########.fr       */
+/*   Created: 2024/10/24 20:19:39 by yuerliu           #+#    #+#             */
+/*   Updated: 2024/10/25 17:50:12 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap(t_list **stack)
+t_list	*ft_lstnew(void *content)
 {
-	t_list	*one;
-	t_list	*two;
+	t_list	*idk;
 
-	if (!*stack || !(*stack)->next)
-		return ;
-	one = stack;
-	two = one->next;
-	one->next = two->next;
-	two->next = one;
-	*stack = two;
-}
-
-void	sa(t_list **st_a)
-{
-	swap(st_a);
-	ft_printf("sa\n");
-}
-
-void	sb(t_list **st_b)
-{
-	swap(st_b);
-	ft_printf("sb\n");
+	idk = (t_list *)malloc(sizeof(t_list));
+	if (!idk)
+		return (NULL);
+	idk->content = content;
+	idk->next = NULL;
+	return (idk);
 }

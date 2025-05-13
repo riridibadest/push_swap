@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 19:45:52 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/12 20:10:08 by yuerliu          ###   ########.fr       */
+/*   Created: 2024/10/24 21:07:31 by yuerliu           #+#    #+#             */
+/*   Updated: 2024/10/26 20:21:03 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap(t_list **stack)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*one;
-	t_list	*two;
+	t_list	*holder;
 
-	if (!*stack || !(*stack)->next)
+	holder = *lst;
+	if (lst == NULL || new == NULL)
 		return ;
-	one = stack;
-	two = one->next;
-	one->next = two->next;
-	two->next = one;
-	*stack = two;
-}
-
-void	sa(t_list **st_a)
-{
-	swap(st_a);
-	ft_printf("sa\n");
-}
-
-void	sb(t_list **st_b)
-{
-	swap(st_b);
-	ft_printf("sb\n");
+	if (*lst == NULL)
+	{
+		*lst = new;
+		return ;
+	}
+	while (holder->next != NULL)
+		holder = holder->next;
+	holder->next = new;
 }
