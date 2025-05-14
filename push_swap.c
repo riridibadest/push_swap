@@ -6,11 +6,44 @@
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 19:30:31 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/13 21:04:35 by yuerliu          ###   ########.fr       */
+/*   Updated: 2025/05/15 00:22:41 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort(t_list **st_a, t_list **st_b)
+{
+	int	size;
+
+	size = ft_lstsize(st_a);
+	if (size == 3)
+		sort_3(st_a);
+	if (size > 3 && size <= 5)
+		sort_4n5(st_a, st_b);
+	if (size > 5)
+		sort_large(st_a, st_b);
+}
+
+void clean_stacks(t_list *st_a, t_list *st_b)
+{
+	t_list	*tmp;
+
+	if (!st_a || !st_b)
+		return ;
+	while(st_a)
+	{
+		tmp = st_a;
+		st_a = st_a->next;
+		free (tmp);
+	}
+	while(st_b)
+	{
+		tmp = st_b;
+		st_b = st_b->next;
+		free (tmp);
+	}
+}
 
 t_list	*parse_em(char **numbers, int arlen)
 {
@@ -73,9 +106,9 @@ int	main(int ac, char **av)
 		else
 			numbers = &av[1];
 		st_a = parse_em(numbers, array_len(numbers));
-		free (numbers);
 		check_2x(st_a);
 		sort(st_a, st_b);
+		clean_stacks(st_a, st_b);
 	}
 	return ;
 }

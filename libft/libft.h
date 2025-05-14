@@ -6,7 +6,7 @@
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 22:13:37 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/13 22:39:42 by yuerliu          ###   ########.fr       */
+/*   Updated: 2025/05/15 00:36:40 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
