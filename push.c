@@ -15,11 +15,10 @@
 void	push(t_list **from, t_list **to)
 {
 	t_list	*tmp;
-	t_list	*_to;
-	t_list	*_from;
 
-	if (*from != NULL)
-		tmp = *from;
+	if (*from == NULL)
+		return;
+	tmp = *from;
 	*from = tmp->next;
 	tmp->next = *to;
 	*to = tmp;
@@ -27,12 +26,12 @@ void	push(t_list **from, t_list **to)
 
 void	pa(t_list **st_a, t_list **st_b)
 {
-	push(st_a, st_b);
+	push(st_b, st_a);
 	ft_printf("pa\n");
 }
 
 void	pb(t_list **st_a, t_list **st_b)
 {
-	push(st_b, st_a);
+	push(st_a, st_b);
 	ft_printf("pb\n");
 }

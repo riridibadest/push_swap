@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 
 # include "../libft.h"
+# include <stdarg.h>
 
 int	ft_printf(const char *fmt, ...);
 int	check_speci(const char fmt, va_list things, int *count);

@@ -47,31 +47,63 @@ int	check_sorted(t_list *st_a)
 	return (0);
 }
 
-void	sort_large(t_list *st_a, t_list *st_b)
+void	sort_large(t_list **st_a, t_list **st_b)
 {
 	int		bit_len;
 	int		lst_size;
 	int		i;
-	t_list	*current;
 
-	give_index(st_a);
+	give_index(*st_a);
 	bit_len = 0;
 	i = 0;
-	current = st_a;
+	lst_size = ft_lstsize(*st_a);
 	while ((lst_size - 1) >> bit_len)
 		bit_len++;
-	while ((bit_len - i) > 0 && check_sorted(st_a) == 1)
+	while ((bit_len - i) > 0 && check_sorted(*st_a) == 1)
 	{
-		lst_size = ft_lstsize(st_a);
-		while (lst_size != 0 && check_sorted(st_a) == 1)
+		int j = 0;
+		lst_size = ft_lstsize(*st_a);
+		while (j < lst_size && check_sorted(*st_a) == 1)
 		{
-			if (((int)(intptr_t)current->content >> i) & 1)
+			int value = (int)(intptr_t)(*st_a)->index;
+			if ((value >> i) & 1)
 				ra(st_a);
 			else
 				pb(st_a, st_b);
+			j++;
 		}
-		while (ft_lstsize(st_b) > 0)
+		while (ft_lstsize(*st_b) > 0)
 			pa(st_a, st_b);
 		i++;
 	}
 }
+
+// void	sort_large(t_list **st_a, t_list **st_b)
+// {
+// 	int		bit_len;
+// 	int		lst_size;
+// 	int		i;
+// 	t_list	*current;
+
+// 	give_index(*st_a);
+// 	bit_len = 0;
+// 	i = 0;
+// 	current = *st_a;
+// 	lst_size = ft_lstsize(*st_a);
+// 	while ((lst_size - 1) >> bit_len)
+// 		bit_len++;
+// 	while ((bit_len - i) > 0 && check_sorted(*st_a) == 1)
+// 	{
+// 		lst_size = ft_lstsize(*st_a);
+// 		while (lst_size != 0 && check_sorted(*st_a) == 1)
+// 		{
+// 			if (((int)(intptr_t)current->content >> i) & 1)
+// 				ra(st_a);
+// 			else
+// 				pb(st_a, st_b);
+// 		}
+// 		while (ft_lstsize(*st_b) > 0)
+// 			pa(st_a, st_b);
+// 		i++;
+// 	}
+// }

@@ -16,12 +16,10 @@ void	rotate(t_list **stack)
 {
 	t_list	*first;
 	t_list	*last;
-	int		i;
 
-	i = 0;
 	if (!*stack || !(*stack)->next)
 		return ;
-	first = stack;
+	first = *stack;
 	*stack = first->next;
 	last = *stack;
 	while (last->next)

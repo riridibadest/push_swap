@@ -12,11 +12,16 @@
 
 #include "push_swap.h"
 
+void	check_leaks(void)
+{
+	system("leaks -q push_swap");
+}
+
 void	sort(t_list **st_a, t_list **st_b)
 {
 	int	size;
 
-	size = ft_lstsize(st_a);
+	size = ft_lstsize(*st_a);
 	if (size == 3)
 		sort_3(st_a);
 	if (size > 3 && size <= 5)
@@ -53,9 +58,11 @@ t_list	*parse_em(char **numbers, int arlen)
 	t_list	*rn;
 
 	i = 0;
-	while (i < arlen)
+	a = NULL;
+	rn = NULL;
+	while (i < (size_t)arlen)
 	{
-		one = ft_lstnew((void *)ft_atoi(numbers[i]));
+		one = ft_lstnew((void *)(intptr_t)ft_atoi(numbers[i]));
 		if (!one)
 			return (NULL);
 		if (!a)
@@ -95,6 +102,7 @@ int	main(int ac, char **av)
 
 	st_a = NULL;
 	st_b = NULL;
+	atexit(check_leaks);
 	if (ac < 2)
 		return (1);
 	if (ac >= 2)
@@ -102,13 +110,13 @@ int	main(int ac, char **av)
 		if (av[1][0] == '\0')
 			return (0);
 		if (ac == 2)
-			numbers = ft_split(av, ' ');
+			numbers = ft_split(av[1], ' ');
 		else
 			numbers = &av[1];
 		st_a = parse_em(numbers, array_len(numbers));
-		check_2x(st_a);
-		sort(st_a, st_b);
+		check_2x(&st_a);
+		sort(&st_a, &st_b);
 		clean_stacks(st_a, st_b);
 	}
-	return ;
+	return (0);
 }

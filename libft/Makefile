@@ -35,8 +35,8 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 # Ar create lib $@ target name $^ all obj files
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(BONUS_OBJ)
+	ar rcs $(NAME) $(OBJS) $(BONUS_OBJ)
 	
 
 #clean object files

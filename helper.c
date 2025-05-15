@@ -37,21 +37,15 @@ int	ps_atoi(const char *str)
 
 void	free_split(char **av)
 {
-	int	y;
 	int	x;
 
 	x = 0;
 	while (av[x])
 	{
-		y = 0;
-		while (av[x][y])
-		{
-			free(av[x][y]);
-			y++;
-		}
-		free(av[x][y]);
-		x++;
+			free(av[x]);
+			x++;
 	}
+	free(av);
 }
 
 void	error_exit(const char *msg)
@@ -65,8 +59,8 @@ void	error_exit(const char *msg)
 
 void	init_stack(t_list **one, t_list **a)
 {
-	one = NULL;
-	a = NULL;
+	*one = NULL;
+	*a = NULL;
 }
 
 void	check_2x(t_list **st_a)
