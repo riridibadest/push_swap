@@ -6,16 +6,16 @@
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 22:40:33 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/12 22:41:33 by yuerliu          ###   ########.fr       */
+/*   Updated: 2025/05/15 17:21:01 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_num_instr(char *str)
+int	ft_num_instr(char *str)
 {
 	int	i;
-	
+
 	if (!str || *str == '\0')
 		return (0);
 	i = 0;

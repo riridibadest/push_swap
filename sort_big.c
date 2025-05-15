@@ -6,7 +6,7 @@
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 22:31:44 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/14 23:39:54 by yuerliu          ###   ########.fr       */
+/*   Updated: 2025/05/15 17:32:40 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	check_sorted(t_list *st_a)
 	while (current && current->next)
 	{
 		if ((int)(intptr_t)current->content > (int)(intptr_t)
-		current->next->content)
+													current->next->content)
 			return (1);
 		current = current->next;
 	}
@@ -49,9 +49,10 @@ int	check_sorted(t_list *st_a)
 
 void	sort_large(t_list **st_a, t_list **st_b)
 {
-	int		bit_len;
-	int		lst_size;
-	int		i;
+	int	bit_len;
+	int	lst_size;
+	int	i;
+	int	j;
 
 	give_index(*st_a);
 	bit_len = 0;
@@ -61,21 +62,28 @@ void	sort_large(t_list **st_a, t_list **st_b)
 		bit_len++;
 	while ((bit_len - i) > 0 && check_sorted(*st_a) == 1)
 	{
-		int j = 0;
+		j = 0;
 		lst_size = ft_lstsize(*st_a);
 		while (j < lst_size && check_sorted(*st_a) == 1)
 		{
-			int value = (int)(intptr_t)(*st_a)->index;
-			if ((value >> i) & 1)
-				ra(st_a);
-			else
-				pb(st_a, st_b);
+			sort_help(i, st_a, st_b);
 			j++;
 		}
 		while (ft_lstsize(*st_b) > 0)
 			pa(st_a, st_b);
 		i++;
 	}
+}
+
+void	sort_help(int i, t_list **st_a, t_list **st_b)
+{
+	int	value;
+
+	value = (int)(intptr_t)(*st_a)->index;
+	if ((value >> i) & 1)
+		ra(st_a);
+	else
+		pb(st_a, st_b);
 }
 
 // void	sort_large(t_list **st_a, t_list **st_b)

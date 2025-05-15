@@ -6,16 +6,17 @@
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 19:30:31 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/15 00:22:41 by yuerliu          ###   ########.fr       */
+/*   Updated: 2025/05/15 19:39:12 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_leaks(void)
-{
-	system("leaks -q push_swap");
-}
+// void	check_leaks(void)
+// {
+// 	system("leaks -q push_swap");
+// }
+//	atexit(check_leaks);//
 
 void	sort(t_list **st_a, t_list **st_b)
 {
@@ -30,23 +31,37 @@ void	sort(t_list **st_a, t_list **st_b)
 		sort_large(st_a, st_b);
 }
 
-void clean_stacks(t_list *st_a, t_list *st_b)
+// void	clean_stacks(t_list *st_a, t_list *st_b)
+// {
+// 	t_list	*tmp;
+
+// 	if (!st_a && !st_b)
+// 		return ;
+// 	while (st_a)
+// 	{
+// 		tmp = st_a;
+// 		st_a = st_a->next;
+// 		free(tmp);
+// 	}
+// 	while (st_b)
+// 	{
+// 		tmp = st_b;
+// 		st_b = st_b->next;
+// 		free(tmp);
+// 	}
+// }
+
+void	clean_stack(t_list *st_a)
 {
 	t_list	*tmp;
 
-	if (!st_a || !st_b)
+	if (!st_a)
 		return ;
-	while(st_a)
+	while (st_a)
 	{
 		tmp = st_a;
 		st_a = st_a->next;
-		free (tmp);
-	}
-	while(st_b)
-	{
-		tmp = st_b;
-		st_b = st_b->next;
-		free (tmp);
+		free(tmp);
 	}
 }
 
@@ -62,7 +77,9 @@ t_list	*parse_em(char **numbers, int arlen)
 	rn = NULL;
 	while (i < (size_t)arlen)
 	{
-		one = ft_lstnew((void *)(intptr_t)ft_atoi(numbers[i]));
+		if (ft_num_instr(numbers[i]) == 0)
+			return (clean_stack(a), NULL);
+		one = ft_lstnew((void *)(intptr_t)ps_atoi(numbers[i]));
 		if (!one)
 			return (NULL);
 		if (!a)
@@ -102,7 +119,6 @@ int	main(int ac, char **av)
 
 	st_a = NULL;
 	st_b = NULL;
-	atexit(check_leaks);
 	if (ac < 2)
 		return (1);
 	if (ac >= 2)
@@ -114,9 +130,12 @@ int	main(int ac, char **av)
 		else
 			numbers = &av[1];
 		st_a = parse_em(numbers, array_len(numbers));
+		if (!st_a)
+			return (ft_printf("Error In Making List\n"), 1);
 		check_2x(&st_a);
 		sort(&st_a, &st_b);
-		clean_stacks(st_a, st_b);
+		clean_stack(st_a);
+		clean_stack(st_b);
 	}
 	return (0);
 }

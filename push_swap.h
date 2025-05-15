@@ -6,12 +6,12 @@
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 19:26:44 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/15 00:12:56 by yuerliu          ###   ########.fr       */
+/*   Updated: 2025/05/15 19:23:01 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include "libft/get_next_line/get_next_line.h"
 # include "libft/libft.h"
@@ -24,31 +24,33 @@
 # define RED "\033[31m"
 # define RESET "\033[0m"
 
-	// typedef struct s_stack
-	// {
-	// 	int	*stack; // for the array
-	// 	int	end;    //end_position
-	// 	int	start;  //start_position
-	// 	int	pot;    //index_number
-	// 	int	len;    //length of array
-	// }			t_stack;
+// typedef struct s_stack
+// {
+// 	int	*stack; // for the array
+// 	int	end;    //end_position
+// 	int	start;  //start_position
+// 	int	pot;    //index_number
+// 	int	len;    //length of array
+// }			t_stack;
 
-	// typedef struct s_both
-	// {
-	// 	t_stack	a;
-	// 	t_stack	b;
-	// }			t_both;
+// typedef struct s_both
+// {
+// 	t_stack	a;
+// 	t_stack	b;
+// }			t_both;
 
 //helpers
-int	ps_atoi(const char *str);
+int		ps_atoi(const char *str);
 void	free_split(char **av);
 void	error_exit(const char *msg);
-void	init_stack(t_list **one, t_list **a);
+// void	init_stack(t_list **one, t_list **a);
 void	check_2x(t_list **st_a);
 void	give_index(t_list *st_a);
 int		check_sorted(t_list *st_a);
 void	sort(t_list **st_a, t_list **st_b);
-void	clean_stacks(t_list *st_a, t_list *st_b);
+void	sort_help(int i, t_list **st_a, t_list **st_b);
+void	clean_stack(t_list *st_a);
+// void	clean_stacks(t_list *st_a, t_list *st_b);
 t_list	*parse_em(char **numbers, int arlen);
 int		array_len(char **array);
 t_list	*findmin(t_list *st_a);

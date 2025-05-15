@@ -6,7 +6,7 @@
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 20:42:30 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/15 00:10:32 by yuerliu          ###   ########.fr       */
+/*   Updated: 2025/05/15 20:18:50 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	sort_3(t_list **st_a)
 		ra(st_a);
 	if ((int)(intptr_t)(*st_a)->content > (int)(intptr_t)(*st_a)->next->content)
 		sa(st_a);
-	else if ((int)(intptr_t)(*st_a)->content < (int)(intptr_t)(*st_a)->next->content)
+	else if ((int)(intptr_t)(*st_a)->content < (int)(intptr_t)
+	(*st_a)->next->content)
 		return ;
 }
 
@@ -103,6 +104,8 @@ void	sort_4n5(t_list **st_a, t_list **st_b)
 	t_list	*min;
 	int		index;
 
+	if (check_sorted(*st_a) == 0)
+		return ;
 	while (ft_lstsize(*st_a) > 3)
 	{
 		min = findmin(*st_a);

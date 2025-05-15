@@ -6,7 +6,7 @@
 /*   By: yuerliu <yuerliu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 19:50:42 by yuerliu           #+#    #+#             */
-/*   Updated: 2025/05/13 21:59:36 by yuerliu          ###   ########.fr       */
+/*   Updated: 2025/05/15 17:24:31 by yuerliu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	push(t_list **from, t_list **to)
 	t_list	*tmp;
 
 	if (*from == NULL)
-		return;
+		return ;
 	tmp = *from;
 	*from = tmp->next;
 	tmp->next = *to;
