@@ -59,11 +59,9 @@ int	find_index(t_list *st_a, t_list *min)
 
 void	sort_3(t_list **st_a)
 {
-	int		size;
 	t_list	*max;
 
-	size = ft_lstsize(*st_a);
-	if (size < 3 || check_sorted(*st_a) == 0)
+	if (check_sorted(*st_a) == 0)
 		return ;
 	max = findmax(*st_a);
 	if (max->next && max != *st_a)

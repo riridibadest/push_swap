@@ -23,7 +23,7 @@ void	sort(t_list **st_a, t_list **st_b)
 	int	size;
 
 	size = ft_lstsize(*st_a);
-	if (size == 3)
+	if (size <= 3)
 		sort_3(st_a);
 	if (size > 3 && size <= 5)
 		sort_4n5(st_a, st_b);
@@ -124,14 +124,14 @@ int	main(int ac, char **av)
 	if (ac >= 2)
 	{
 		if (av[1][0] == '\0')
-			return (0);
+			return (write(2, "Error\n", 6));
 		if (ac == 2)
 			numbers = ft_split(av[1], ' ');
 		else
 			numbers = &av[1];
 		st_a = parse_em(numbers, array_len(numbers));
 		if (!st_a)
-			return (ft_printf("Error In Making List\n"), 1);
+			return (write(2, "Error\n", 6));
 		check_2x(&st_a);
 		sort(&st_a, &st_b);
 		clean_stack(st_a);

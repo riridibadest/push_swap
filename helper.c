@@ -33,9 +33,9 @@ int	ps_atoi(const char *str)
 	{
 		result = (result * 10) + (str[i] - '0');
 		if (sign == 1 && result > INT_MAX)
-			error_exit("Beyond MAX");
+			error_exit("Error");
 		if (sign == -1 && - result < INT_MIN)
-			error_exit("Beyond MIN");
+			error_exit("Error");
 		i++;
 	}
 	return (result * sign);
@@ -57,9 +57,9 @@ void	free_split(char **av)
 void	error_exit(const char *msg)
 {
 	if (msg)
-		ft_printf(RED "Error: %s\n" RESET, msg);
+		write(2, "Error\n", 6);
 	else
-		ft_printf(RED "Error: Unknown error\n" RESET);
+		write(2, "Error\n", 6);
 	exit(1);
 }
 
@@ -82,7 +82,7 @@ void	check_2x(t_list **st_a)
 		while (nt)
 		{
 			if ((int)(intptr_t)now->content == (int)(intptr_t)nt->content)
-				error_exit("Duplication in the Function");
+				error_exit("Error\n");
 			nt = nt->next;
 		}
 		now = now->next;
